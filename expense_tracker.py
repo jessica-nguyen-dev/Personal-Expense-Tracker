@@ -1,7 +1,7 @@
 def main(): # when the main function is run it will run all the below functions in order
     print(f"Running Expense Tracker!")  # checks that main is running properly
 
-    # Each part will be a function to simplify the code
+    # Each part will be a function to simplify the code and allow for easier debugging
 
     # Get user input for expense.
     get_user_expense()
