@@ -65,7 +65,7 @@ def get_user_expense():
 # the CSV file. Specifically, it writes the expense's name, amount, and category to the file separated by commas which
 # is understood universally by programs such as Microsoft Excel.
 
-# Expense refers to object created by get_user_expense (refer to line 19)
+# Expense refers to object created and returned by get_user_expense (refer to line 19)
 
 def save_expense_to_file(expense, expense_file_path):
     print(f"📂 Saving User Expense: {expense} to {expense_file_path}.")
