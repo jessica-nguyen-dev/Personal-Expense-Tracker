@@ -1,10 +1,14 @@
-# defines a class named Expense, which is used to represent an expense with three attributes: name, category, and amount
+# The Expense class is a blueprint for creating expense objects with a name, category, and amount. When a new expense is
+# created, the __init__ method initializes these attributes (__init__ is short for "initialize").
 
-class Expense:      # __init__ constructor is automatically called when a new instance is created
-    def __init__(self, name, category, amount) -> None:     # None indicates that this method does not return a value
-        self.name = name       # Name, category, and amount are parameters that are passed when a new object is created
+class Expense:
+    def __init__(self, name, category, amount) -> None:
+        self.name = name
         self.category = category
         self.amount = amount
 
-    def __repr__(self):     # overwrites default output to something descriptive
+# The __repr__ method is customized to give a concise and user-friendly description of the expense, which is much easier
+# to understand and analyze than the default output (__repr__ is short for "representation").
+
+    def __repr__(self):
         return f"<Expense: {self.name} - {self.category} - ${self.amount:.2f}>"
