@@ -60,7 +60,15 @@ def summarize_expenses(expense_file_path):
     with open(expense_file_path, "r", encoding="utf-8") as f: # r stands for read only mode
         lines = f.readlines()   # creates a list of strings where each item corresponds to a line in the CSV file
         for line in lines:
-            stripped_line = line.strip()    # removes spaces, newlines, trailing whitespaces etc
+            expense_name, expense_amount, expense_category = line.strip().split(",") # strips then splits line into 3
+            line_expense = Expense(
+                name=expense_name, amount=expense_amount, category=expense_category
+            )
+            print(line_expense)
+            expenses.append(line_expense) # once file is read, append to expenses list
+        print(expenses)
+
+
 # ensures that the code runs only when we run this file, not when in other files
 if __name__ == "__main__":   # will only be true if we run the file directly
     main()
