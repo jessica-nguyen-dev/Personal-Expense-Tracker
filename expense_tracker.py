@@ -62,11 +62,22 @@ def summarize_expenses(expense_file_path):
         for line in lines:
             expense_name, expense_amount, expense_category = line.strip().split(",") # strips then splits line into 3
             line_expense = Expense(
-                name=expense_name, amount=expense_amount, category=expense_category
+                name=expense_name, amount=float(expense_amount), category=expense_category
             )
-            print(line_expense)
             expenses.append(line_expense) # once file is read, append to expenses list
-        print(expenses)
+
+    amount_by_category = {}     # creating a dictionary
+    for expense in expenses:
+        key = expense.category
+        if key in amount_by_category:
+            amount_by_category[key] += expense.amount
+        else:
+            amount_by_category[key] = expense.amount
+
+    print("Expenses By Category: ")
+    for key, amount in amount_by_category.items():
+        print(f"{key}: ${amount:.2f}")
+
 
 
 # ensures that the code runs only when we run this file, not when in other files
