@@ -92,8 +92,10 @@ def summarize_expenses(expense_file_path, budget):
     remaining_days = days_in_month - now.day
 
     daily_budget = remaining_budget/remaining_days
-    print(f"👉 Budget Per Day: ${daily_budget:.2f}")
+    print(green(f"👉 Budget Per Day: ${daily_budget:.2f}"))
 
+def green(text):
+    return f"\033[92m{text}\033[0m"
 
 # ensures that the code runs only when we run this file, not when in other files
 if __name__ == "__main__":   # will only be true if we run the file directly
