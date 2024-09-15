@@ -69,44 +69,57 @@ def get_user_expense():
 
 def save_expense_to_file(expense, expense_file_path):
     print(f"📂 Saving User Expense: {expense} to {expense_file_path}.")
-    with open(expense_file_path, "a", encoding="utf-8") as f:
-        f.write(f"{expense.name},{expense.amount},{expense.category}\n")
+    with open(expense_file_path, "a", encoding="utf-8") as file: # file is a variable and can be named anything
+        file.write(f"{expense.name},{expense.amount},{expense.category}\n")
+
+# The summarize_expenses function reads expenses from a specified CSV file, sums up the total amount spent by
+# category, and compares it to a given budget. It then prints a summary of expenses by category, the total amount spent,
+# the remaining budget, and calculates the budget per day for the rest of the month.
 
 def summarize_expenses(expense_file_path, budget):
-    # Summarize the expenses from the file and compare with the budget
+
     print(f"📊 Summarizing User Expense!")
-    expenses = []  # List to store Expense objects
-    with open(expense_file_path, "r", encoding="utf-8") as f:
-        # Read all lines from the file
-        lines = f.readlines()
+    expenses = []  # Initializes an empty list to store expense objects line by line from the CSV file we created
+
+    # Opens the file and reads each line. It then splits each line into expense_name, expense_amount, and
+    # expense_category, creates an Expense object with these values, and then adds the object to the expenses list.
+
+    with open(expense_file_path, "r", encoding="utf-8") as file:
+        lines = file.readlines() # a list of strings
         for line in lines:
-            # Parse each line and create an Expense object
             expense_name, expense_amount, expense_category = line.strip().split(",")
-            line_expense = Expense(
+            line_expense = Expense( # object
                 name=expense_name, amount=float(expense_amount), category=expense_category
             )
-            # Append the Expense object to the list
-            expenses.append(line_expense)
+            expenses.append(line_expense) # adds to list of objects
 
-    amount_by_category = {}  # Dictionary to accumulate expenses by category
+    # Creates a dictionary to track total expenses by category.
+    amount_by_category = {}  # Dictionary
+
+    # Iterate through the expenses list and for each expense, update the total for its category in the dictionary,
+    # either by adding to an existing total or creating a new entry the category is not already present.
+
     for expense in expenses:
-        # Use the category as the dictionary key
         key = expense.category
         if key in amount_by_category:
-            # Add amount to the existing category
-            amount_by_category[key] += expense.amount
+            amount_by_category[key] += expense.amount   # adds to value associated with key
         else:
-            # Create a new entry for the category
-            amount_by_category[key] = expense.amount
+            amount_by_category[key] = expense.amount    # initializes key AND value associated with key
 
-    # Print the summarized expenses by category
+    # Iterates over each key-value pair in the dictionary. Key gets assigned the key of the current item (e.g., "Food").
+    # Amount gets assigned the value of the current item (e.g., 150.0)
+
     print("Expenses By Category: ")
     for key, amount in amount_by_category.items():
         print(f"    {key}: ${amount:.2f}")
 
     # Calculate and print the total amount spent and remaining budget
-    total_spent = sum([expense.amount for expense in expenses])
+    total_spent = sum([expense.amount for expense in expenses]) # creates a list of all the amount values from the expenses list
     print(f"💰 Total spent: ${total_spent:.2f}")
+
+    # Note: every object in the expenses list called expense and the amount is the value associated with the object?
+    # So we are iterating through a list of objects called expenses, where each object is called expense, and amount is
+    # an attribute related to an instance of that object.
 
     remaining_budget = budget - total_spent
     print(f"✅ Budget Remaining: ${remaining_budget:.2f}")
