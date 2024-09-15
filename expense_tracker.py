@@ -47,10 +47,11 @@ def get_user_expense():
         for element in expense_categories:
             print(f"{element_index}. {element}")
             element_index += 1
-        print("\n")
+        # print("\n")
 
         value_range = f"[1 - {len(expense_categories)}]" # Equates to a string (ie 1 - 6)
-        selected_index = int(input(f"Enter a category number {value_range}: \n")) - 1
+        selected_index = int(input(f"\n Enter a category number {value_range}: ")) - 1
+        print("\n")
         # Subtracts one because the list index starts at 0, thus is one less than the actual length of the list.
 
         # Range() stops before the last value (ie range(6) generates indices from 0 to 5).
@@ -70,7 +71,7 @@ def get_user_expense():
 # Expense refers to object created and returned by get_user_expense (refer to line 19)
 
 def save_expense_to_file(expense, expense_file_path):
-    print(f"📂 Saving User Expense: {expense} to {expense_file_path}.\n")
+    print(f"📂 Saving User Expense: {expense} to {expense_file_path}.")
     with open(expense_file_path, "a", encoding="utf-8") as file: # file is a variable and can be named anything
         file.write(f"{expense.name},{expense.amount},{expense.category}\n")
 
@@ -114,11 +115,11 @@ def summarize_expenses(expense_file_path, budget):
     print("Expenses By Category: ")
     for key, amount in amount_by_category.items():
         print(f"    {key}: ${amount:.2f}")
-    print("\n")
+    # print("\n")
 
     # Calculate and print the total amount spent and remaining budget
     total_spent = sum([expense.amount for expense in expenses]) # creates a list of all the amount values from the expenses list
-    print(f"💰 Total spent: ${total_spent:.2f}")
+    print(f"\n 💰 Total spent: ${total_spent:.2f}")
 
     # Note: every object in the expenses list called expense and the amount is the value associated with the object?
     # So we are iterating through a list of objects called expenses, where each object is called expense, and amount is
