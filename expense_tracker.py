@@ -26,10 +26,11 @@ def main():
 # details if the selected category is valid; otherwise, it prompts the user to try again.
 
 def get_user_expense():
-    print(f"📝 Getting User Expense!")
+    print(f"📝 Getting User Expense!\n")
 
     expense_name = input("Enter expense name: ")
     expense_amount = float(input("Enter expense amount: "))
+    print ("\n")
 
     expense_categories = [
         "🍣 Food",
@@ -46,9 +47,10 @@ def get_user_expense():
         for element in expense_categories:
             print(f"{element_index}. {element}")
             element_index += 1
+        print("\n")
 
         value_range = f"[1 - {len(expense_categories)}]" # Equates to a string (ie 1 - 6)
-        selected_index = int(input(f"Enter a category number {value_range}: ")) - 1
+        selected_index = int(input(f"Enter a category number {value_range}: \n")) - 1
         # Subtracts one because the list index starts at 0, thus is one less than the actual length of the list.
 
         # Range() stops before the last value (ie range(6) generates indices from 0 to 5).
@@ -59,7 +61,7 @@ def get_user_expense():
             new_expense = Expense(name=expense_name, category=selected_category, amount=expense_amount)
             return new_expense
         else:
-            print("Invalid category. Please try again!")
+            print("Invalid category. Please try again!\n")
 
 # The `save_expense_to_file` function appends the details of the `Expense` object created in the previous function to
 # the CSV file. Specifically, it writes the expense's name, amount, and category to the file separated by commas which
@@ -68,7 +70,7 @@ def get_user_expense():
 # Expense refers to object created and returned by get_user_expense (refer to line 19)
 
 def save_expense_to_file(expense, expense_file_path):
-    print(f"📂 Saving User Expense: {expense} to {expense_file_path}.")
+    print(f"📂 Saving User Expense: {expense} to {expense_file_path}.\n")
     with open(expense_file_path, "a", encoding="utf-8") as file: # file is a variable and can be named anything
         file.write(f"{expense.name},{expense.amount},{expense.category}\n")
 
@@ -78,7 +80,7 @@ def save_expense_to_file(expense, expense_file_path):
 
 def summarize_expenses(expense_file_path, budget):
 
-    print(f"📊 Summarizing User Expense!")
+    print(f"📊 Summarizing User Expense!\n")
     expenses = []  # Initializes an empty list to store expense objects line by line from the CSV file we created
 
     # Opens the file and reads each line. It then splits each line into expense_name, expense_amount, and
@@ -112,6 +114,7 @@ def summarize_expenses(expense_file_path, budget):
     print("Expenses By Category: ")
     for key, amount in amount_by_category.items():
         print(f"    {key}: ${amount:.2f}")
+    print("\n")
 
     # Calculate and print the total amount spent and remaining budget
     total_spent = sum([expense.amount for expense in expenses]) # creates a list of all the amount values from the expenses list
