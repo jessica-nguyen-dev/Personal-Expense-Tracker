@@ -15,7 +15,7 @@ This project allows users to:
 - **Summarize Expenses:** Provides a breakdown of total spending by category, total amount spent, remaining budget, and daily budget for the rest of the month.
 
 ## Requirements
-- Python 3.x
+- Python 3+
 - No external libraries required (uses built-in Python libraries like `calendar` and `datetime`).
 
 ## Installation
