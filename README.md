@@ -21,7 +21,7 @@ This project allows users to:
 ## Installation
 1. Clone this repository to your local machine.
    ```bash
-   git clone https://github.com/jessica-nguyen-dev/Personal-Expense-Tracker.git
+   git clone https://github.com/jessica-nguyen-it/Personal-Expense-Tracker.git
 
 2. Navigate to the project directory:
    ```bash
